@@ -1,0 +1,48 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+
+{% ifequal error "no" %}
+<script>
+    alert('Logged in Successfully');
+    window.location = ('{% url 'profile' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert('Invalid Login Credentials, Try Again.');
+</script>
+{% endifequal %}
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+                <h2 class="text-center">New user?</h2>
+                <hr>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum perferendis magnam sed illo, vitae, architecto unde, quis autem modi quasi cum optio quas dolorem quae et tempore totam! Iure, dolorem?</p>
+                <center><a href="{% url 'signup' %}" class="btn btn-danger text-white text-center mt-5">SignUp</a></center>
+        </div>
+        <div class="col-sm-6">
+            <h2 class="text-center">User Login</h2>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                <label>Email Address: </label>
+                    <input type="email" class="form-control" placeholder="Enter Email Address" name="emailid" >
+                <label>Password: </label>
+                    <input type="password" class="form-control" placeholder="Enter Password" name="pwd">
+                    <input type="submit" class="btn btn-danger mt-3" value="Login" >
+            </form>
+    </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}

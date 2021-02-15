@@ -1,0 +1,62 @@
+{% extends 'navigation.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+                <h2 class="text-center">Create an Account</h2>
+                <hr>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum perferendis magnam sed illo, vitae, architecto unde, quis autem modi quasi cum optio quas dolorem quae et tempore totam! Iure, dolorem?</p>
+
+        </div>
+        <div class="col-sm-6">
+            <h2 class="text-center">SignUp</h2>
+            <hr>
+            <form method="POST">
+                {% csrf_token %}
+                <label>First Name: </label>
+                    <input type="text" class="form-control" placeholder="Enter First Name" name="firstname" >
+                <label>Last Name: </label>
+                    <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname" >
+                <label>Contact: </label>
+                    <input type="text" class="form-control" placeholder="Enter Contact No." name="contact" >
+                <label>Email Address: </label>
+                    <input type="email" class="form-control" placeholder="Enter Email Address" name="emailid" >
+                <label>Branch: </label>
+                    <select class="form-control" name="branch">
+                        <option value="CS">CS</option>
+                        <option value="CSIS">CSIS</option>
+                    </select>
+
+                <label>Are You? </label>
+                    <select class="form-control" name="role">
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
+                    </select>
+                <label>Password: </label>
+                    <input type="password" class="form-control" placeholder="Enter Password" name="password">
+                    <input type="submit" class="btn btn-primary mt-3" value="SignUp" >
+            </form>
+    </div>
+    </div>
+
+</div>
+{% ifequal error "no" %}
+<script>
+    alert('Signup Successfully');
+    window.location = ('{% url 'login' %}');
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert('Something went wrong, Try Again.');
+</script>
+{% endifequal %}
+
+
+
+
+{% endblock %}

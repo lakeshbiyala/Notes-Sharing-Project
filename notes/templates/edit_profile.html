@@ -1,0 +1,66 @@
+{% extends 'user_nav.html'%}
+{% load static %}
+
+{% block body%}
+
+<div class="container mt-5">
+    <h2 class="text-center">Edit Profile</h2>
+    <hr>
+    
+    <div class="row">
+        <div class="col-sm-6">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Firstname: </label>
+                    <input type="text" class="form-control" value="{{data.user.first_name}}" name="firstname">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Lastname: </label>
+                    <input type="text" class="form-control" value="{{data.user.last_name}}" name="lastname">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Email Address: </label>
+                    <input type="email" class="form-control" value="{{data.user.username}}" name="emailid" readonly>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label>Contact: </label>
+                    <input type="text" class="form-control" value="{{data.contact}}" name="contact">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Branch: </label>
+                    <select class="form-control" name="branch">
+                        <option value="{{data.branch}}">{{data.branch}}</option>
+                        <option value="CS">CS</option>
+                        <option value="CSIS">CSIS</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6 mt-2">
+                    <input type="email" class="form-control mt-4" value="{{data.branch}}" name="branch" readonly>   
+                </div>
+            </div>
+
+            <input type="submit" class="btn btn-primary mt-3" value="Update">
+        </form>
+        </div>
+
+    </div>
+    
+</div>
+
+{% if error %}
+<script>
+    alert('Profile Updated Successfully!');
+    window.location = "{% url 'profile' %}";    
+</script>
+{% endif %}
+
+
+{% endblock %}
